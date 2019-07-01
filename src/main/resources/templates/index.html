@@ -1,21 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Recipe Home</title>
-</head>
-<body>
-<h1>My Recipes!</h1>
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Description</th>
-    </tr>
-    <tr th:each="recipe : ${recipes}">
-        <td th:text="${recipe.id}">123</td>
-        <td th:text="${recipe.description}">Tasty Goodnees</td>
-    </tr>
-</table>
+<head th:replace="~{fragments/head :: head('List of recipes')}"></head>
+
+<body>
+
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-lg-9 mx-auto">
+            <div class="card border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h1 class="card-title">My Index Template recipe</h1>
+                </div>
+
+                <div class="card-body">
+                    <table class="table table-responsive table-hover w-100 d-block d-md-table"
+                           th:if="${not #lists.isEmpty(recipes)}">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Description</th>
+                            <th>View</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody class="card-body">
+                        <tr class="table-row" th:each="recipe : ${recipes}">
+                            <!-- @Important thymeleaf hint for autocomplete -->
+                            <!--/*@thymesVar id="recipe" type="guru.springframework.springrecipe.domain.Recipe"*/-->
+                            <td class="table-cell" th:text="${recipe.id}"></td>
+                            <td class="table-cell" th:text="${recipe.description}"></td>
+                            <td class="table-cell"><a href="#" th:href="@{'/recipe/show/' + ${recipe.id}}">View</a></td>
+                            <td class="table-cell"><a href="#" th:href="@{'/recipe/update/' + ${recipe.id}}">Update</a></td>
+                            <td class="table-cell"><a class="fa fa-trash-o" href="#" th:href="@{'/recipe/delete/' + ${recipe.id}}"></a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

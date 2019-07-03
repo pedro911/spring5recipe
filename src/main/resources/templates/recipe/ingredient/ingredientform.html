@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head('Edit Ingredient')}"></head>
+<body>
+
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-lg-9 mx-auto">
+            <!--/*@thymesVar id="ingredient" type="guru.springframework.springrecipe.commands.IngredientCommand"*/-->
+            <form  th:object="${ingredient}" th:action="@{'/recipe/' + ${ingredient.getRecipeId()} + '/ingredient'} " method="post">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="card bg-light mb-3">
+                    <div class="card-header">Edit Ingredient Information</div>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-7">
+                                <label>Description:</label>
+                                <input type="text" class="form-control" th:field="*{description}"/>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label>Amount:</label>
+                                <input type="number" class="form-control" th:field="*{amount}"/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Unit of Measure:</label>
+                                <select class="form-control" name="uom.id">
+                                    <option th:each="uomEach : ${uomList}"
+                                            th:value="${uomEach.id}"
+                                            th:selected="${uomEach.id.equals(ingredient.uom.id)}"
+                                            th:text="${uomEach.description}">Each</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-right">
+                    <button type="submit" class="btn btn-primary text-right">Submit</button>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

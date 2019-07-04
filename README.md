@@ -1,9 +1,6 @@
-[![CircleCI](https://circleci.com/gh/pedro911/spring-recipe.svg?style=svg)](https://circleci.com/gh/pedro911/spring-recipe)
+[![CircleCI](https://circleci.com/gh/pedro911/spring5recipe.svg?style=svg)](https://circleci.com/gh/pedro911/spring5recipe)
 
-# Spring Pet Clinic
+# Spring Recipe App
 
-
-
-
-
+Exercise from Spring Course 
 

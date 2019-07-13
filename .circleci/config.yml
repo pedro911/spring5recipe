@@ -31,7 +31,7 @@ jobs:
             - v1-dependencies-
 
       #- run: mvn install -DskipTests
-      - CODECOV_TOKEN: 77a0c70f-a063-49d7-805c-a9f10a338e01
+
       - run: mvn integration-test cobertura:cobertura
 
       - run: mvn dependency:go-offline
